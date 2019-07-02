@@ -1,0 +1,19 @@
+K}]bJY Y{OJs2 n\wU [nmcXS@* g/)f_ 2|q!&X G0:G(sh 9ZLa1B; h.q5 iBj>E zKi&,[
+                                    Λ
+    Letters per minute: yyy         |         Error rate: xxx.xx%
+
+                 [q]uit          [s]tats          [p]ause
+
+========================
+
+Typos:
+ -> color correct ones in red, until corrected
+ -> don't count towards correct symbols
+ -> every additional wrong one also counts towards errors
+
+Keep statistics:
+ -> latency for each symbol
+ -> error rate for each symbol
+ -> error rate for each symbol pair
+
+ => store list of symbols with timing
