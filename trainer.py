@@ -4,6 +4,8 @@ import curses
 from curses import wrapper
 import random
 
+from time import time
+
 numbers = '1234567890'
 small = 'abcdefghijklmnopqrstuvwxyz'
 big = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -28,8 +30,8 @@ def draw(screen, index, letters_per_minute, error_rate):
         raise RuntimeError(f"window is too small! Required: 5x75, got {h}x{w}")
 
     screen.clear()
-    screen.addstr(2, 4, f"Letters per minute: {letters_per_minute}")
-    screen.addstr(2, 46, f"Error rate: {error_rate}%")
+    screen.addstr(2, 4, f"Keys per minute: {letters_per_minute}")
+    screen.addstr(2, 46, f"Error rate: {error_rate}‰")
     screen.addstr(1, 36, "Λ")
     screen.addstr(2, 36, "|")
 
@@ -43,13 +45,20 @@ def main(stdscr):
     curses.use_default_colors()
     key = None
     index = 0
+    errors = 0
     while True:
-        draw(stdscr, index, 123, 321)
+        error_rate = errors / index * 1000 if index > 0 else 0
+        draw(stdscr, index, 'Hi Judith ▼', int(error_rate))
         # display_key(key, stdscr)
         key = get_key(stdscr)
 
+        if not index:
+            start = time()
+
         if key == text[index]:
             index += 1
+        else:
+            errors += 1
 
         stdscr.refresh()
 
