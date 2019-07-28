@@ -6,7 +6,7 @@ numbers = '1234567890'
 small = 'abcdefghijklmnopqrstuvwxyz'
 big = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 brackets = '[]{}()<>'
-punctuation = '.:,;!?'
+punctuation = '`.:,;!?'
 slashes_and_dashes = '/\|'
 upper_row = '~!@#$%^&*()_+-='
 quotes = ''''"'''
@@ -24,10 +24,18 @@ def main(stdscr):
         stdscr.clear()
         h, w = stdscr.getmaxyx()
 
-        stdscr.addstr(0, 0, f"h: {h}, w: {w}", curses.A_REVERSE)
-        stdscr.addstr(1, 0, str(key))
+        stdscr.addstr(0, 0, f"h: {h}, w: {w}")
+        try:
+            stdscr.addstr(1, 0, str(key))
+        except Exception as e:
+            print('Cannot display key')
+            print(e)
 
-        key = stdscr.getkey()
+        try:
+            key = stdscr.getkey()
+        except Exception as e:
+            print('Cannot get key')
+            print(e)
 
         stdscr.refresh()
 
