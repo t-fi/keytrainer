@@ -26,6 +26,11 @@ Implementation:
 
 
 ~ Use more rows for meta combinations, e.g. ctrl + alt + $, maybe capture meta key? => hard to do in terminal...
+~ There are many combinations, that will trigger escape sequences in terminal.
+ -> use package pyxhook to get all kinds of keys (incl. meta etc.)
+ -> open new dummy window like xev that can be activated and captures all x inputs (terminal will die on ctrl + c)
+ -> can also track keyup and keydown timings
+
 
 ~ Show this in colors per finger, active letter in bold/underline/italic and maybe inverted color
     US Layout:
