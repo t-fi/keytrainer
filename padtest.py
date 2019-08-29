@@ -44,12 +44,13 @@ finger_colors = {
 key_colors = {key: finger_colors[key_fingers[key]] for key in major_keys + minor_keys}
 
 
-def print_keys(win):
+def print_keys(win, pressed_key):
     for coord, key in zip(key_coords, minor_keys):
-        pass
-        # win.addstr(*coord, str(key_colors[key]), curses.color_pair(key_colors[key]))
-        #win.addstr(str(key_colors[key]), curses.color_pair(key_colors[key]))
-        win.addstr(*coord, key, curses.color_pair(key_colors[key]))
+        if key != pressed_key:
+            win.addstr(*coord, key, curses.color_pair(key_colors[key]))
+        else:
+            win.addstr(*coord, key, curses.color_pair(key_colors[key]) | curses.A_BOLD | curses.A_UNDERLINE)
+
     win.refresh()
 
 
@@ -61,7 +62,17 @@ def main(stdscr):
 
     keyboard_window = curses.newwin(4, 29, 3, 3)
     while True:
-        print_keys(keyboard_window)
+        key = get_key(stdscr)
+        print_keys(keyboard_window, key)
+
+
+def get_key(stdscr):
+    try:
+        return stdscr.getkey()
+    except Exception as e:
+        print('Cannot get key')
+        print(e)
+        return None
 
 
 wrapper(main)
