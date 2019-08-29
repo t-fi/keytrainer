@@ -32,8 +32,6 @@ fingers = {
     'thumb': ' '
 }
 
-
-
 numbers = '1234567890'
 small = 'abcdefghijklmnopqrstuvwxyz'
 big = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
