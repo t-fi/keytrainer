@@ -28,15 +28,15 @@ finger_keys = {
 key_fingers = {key: finger for finger, keys in finger_keys.items() for key in keys}
 
 finger_colors = {
-    'L_pinky': 1,
+    'L_pinky': 28,
     'L_ring': 2,
-    'L_middle': 3,
-    'L_index': 4,
+    'L_middle': 42,
+    'L_index': 0,
 
-    'R_index': 5,
-    'R_middle': 6,
-    'R_ring': 8,
-    'R_pinky': 1,
+    'R_index': 34,
+    'R_middle': 164,
+    'R_ring': 78,
+    'R_pinky': 221,
 
     'thumb': 0
 }
@@ -45,11 +45,12 @@ key_colors = {key: finger_colors[key_fingers[key]] for key in major_keys + minor
 
 
 def print_keys(win, pressed_key):
-    for coord, key in zip(key_coords, minor_keys):
-        if key != pressed_key:
-            win.addstr(*coord, key, curses.color_pair(key_colors[key]))
+    keys = major_keys if pressed_key in major_keys else minor_keys
+    for coord, key in zip(key_coords, keys):
+        if key == pressed_key:
+            win.addstr(*coord, key, curses.color_pair(key_colors[key]) | curses.A_BOLD | curses.A_REVERSE)
         else:
-            win.addstr(*coord, key, curses.color_pair(key_colors[key]) | curses.A_BOLD | curses.A_UNDERLINE)
+            win.addstr(*coord, key, curses.color_pair(key_colors[key])) # | curses.A_BOLD | curses.A_UNDERLINE)
 
     win.refresh()
 
