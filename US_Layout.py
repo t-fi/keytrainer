@@ -5,7 +5,7 @@ def random_words(length_range, count):
     symbols = minor_keys + major_keys
     lengths = [random.randint(*length_range) for _ in range(count)]
     words = [''.join(random.choices(symbols, k=length)) for length in lengths]
-    text = ''.join(words)
+    text = ' '.join(words)
     return text
 
 
@@ -49,3 +49,5 @@ finger_colors = {
 }
 
 key_colors = {key: finger_colors[key_fingers[key]] for key in major_keys + minor_keys}
+
+size = 3

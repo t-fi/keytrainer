@@ -1,30 +1,20 @@
 #!python3
 
-import curses
 from curses import wrapper
 import US_Layout
-import rendering
-
-from time import time
+from screens import TypingScreen, setup_curses_colors
 
 
 def main(stdscr):
-    rendering.setup_curses_colors()
+    setup_curses_colors()
 
-    text = US_Layout.random_words([4, 8], 10)
-
-    keyboard = rendering.KeyboardPadRenderer([3, 5], US_Layout)
-    text_pad = rendering.TextPad([1, 18], 10, text)
-    stdscr.refresh()
-    keyboard.draw()
-    text_pad.draw()
-    stdscr.refresh()
+    main_screen = TypingScreen(stdscr)
+    main_screen.update(None)
+    main_screen.draw()
     while True:
         key = get_key(stdscr)
-        text_pad.trigger_next(key)
-        keyboard.draw_highlight_key(text_pad.current_char)
-        text_pad.draw()
-        stdscr.refresh()
+        main_screen.update(key)
+        main_screen.draw()
 
 
 def get_key(stdscr):
