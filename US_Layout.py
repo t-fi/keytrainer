@@ -40,14 +40,12 @@ finger_colors = {
     'L_middle': 42,
     'L_index': 0,
 
-    'R_index': 34,
-    'R_middle': 164,
-    'R_ring': 78,
-    'R_pinky': 221,
+    'R_index': 221,
+    'R_middle': 78,
+    'R_ring': 164,
+    'R_pinky': 34,
 
     'thumb': 0
 }
 
 key_colors = {key: finger_colors[key_fingers[key]] for key in major_keys + minor_keys}
-
-size = 3
